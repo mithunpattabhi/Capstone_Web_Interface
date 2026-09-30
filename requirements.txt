@@ -1,0 +1,9 @@
+flask
+torch            
+numpy           
+scikit-learn     
+opencv-python    
+mediapipe       
+moviepy        
+librosa          
+ultralytics    
