@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multimodal Security System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="bg-shape shape1"></div>
+    <div class="bg-shape shape2"></div>
+    <div class="bg-shape shape3"></div>
+
+    <div class="container glass-panel">
+        <header>
+            <h1><i class="fas fa-shield-alt"></i> Capstone Video Detection</h1>
+            <p class="subtitle">Anomaly Detection</p>
+        </header>
+
+        <div class="upload-section" id="uploadSection">
+            <div class="drop-zone" id="dropZone">
+                <i class="fas fa-cloud-upload-alt icon-huge"></i>
+                <h3>Drag & Drop Video Here</h3>
+                <p>or click to browse from your computer</p>
+                <input type="file" id="videoInput" accept="video/mp4,video/x-m4v,video/*" hidden>
+            </div>
+            <button class="btn-primary" id="analyzeBtn" disabled>Analyze Footage</button>
+        </div>
+
+        <div class="loading-section hidden" id="loadingSection">
+            <div class="spinner"></div>
+            <p>Fusing Skeleton, Audio, and YOLO models...</p>
+            <p class="small-text">This may take a moment</p>
+        </div>
+
+        <div class="results-section hidden" id="resultsSection">
+            <h2>Analysis Complete</h2>
+            
+            <div class="result-card primary-result" id="mainResultCard">
+                <div class="prediction-header">
+                    <h1 id="finalPrediction">Normal ADL</h1>
+                    <span class="confidence-badge" id="confidenceBadge">99.0%</span>
+                </div>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <i class="fas fa-moon"></i>
+                    <h4>Environment</h4>
+                    <p id="envMode">Day Mode</p>
+                    <small id="brightnessVal">80/255</small>
+                </div>
+                
+                <div class="metric-card">
+                    <i class="fas fa-volume-up"></i>
+                    <h4>Audio Sensors</h4>
+                    <p id="audioStatus">No Audio Detected</p>
+                    <small id="audioOverride" class="override-text hidden">Critical Override Triggered</small>
+                </div>
+
+                <div class="metric-card">
+                    <i class="fas fa-user-shield"></i>
+                    <h4>YOLO V8 Override</h4>
+                    <p id="yoloStatus">Stable Stance</p>
+                    <small id="yoloOverride" class="override-text hidden">Horizontal Fall Detected!</small>
+                </div>
+            </div>
+
+            <button class="btn-secondary" onclick="resetApp()">Analyze Another Video</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
